@@ -8,7 +8,7 @@ import shutil
 
 URLS = { 
     'news': "https://www.bbc.com/news",
-    'nba': "https://www.balldontlie.io/#get-all-games"
+    'nba': 'https://www.nba.com/api/v1/events/'
 }
 
 _, columns = shutil.get_terminal_size()
@@ -37,16 +37,16 @@ def get_nba():
     }
     response = requests.get(URLS['nba'], headers=headers)
     data = json.loads(response.text)
-    boundary = '_' 
-    max_len = -1 
-    nba = ''  
-    for game in data['data']:
-        info = '\n|'+str(game['home_team']['full_name'], game['home_team_score'], '-', game['visitor_team']['full_name'], game['visitor_team_score'])+ '|\n' 
-        max_len = max(max_len,info.__len__())
-        nba+=info
-    boundary = boundary*max_len
-    nba += boundary + nba + boundary
-    return nba
+    # boundary = '_' 
+    # max_len = -1 
+    # nba = ''  
+    # for game in data['data']:
+    #     info = '\n|'+str(game['home_team']['full_name'], game['home_team_score'], '-', game['visitor_team']['full_name'], game['visitor_team_score'])+ '|\n' 
+    #     max_len = max(max_len,info.__len__())
+    #     nba+=info
+    # boundary = boundary*max_len
+    # nba += boundary + nba + boundary
+    return str(data)
 
 def post_news():
     pass

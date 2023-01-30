@@ -1,4 +1,4 @@
-name: Node Continuous Integration 
+name: Automated Tests
 on: 
   pull_request: 
   push: 
@@ -7,6 +7,27 @@ jobs:
   test_pull_request: 
     runs-on: ubuntu-latest
     steps:
-     - uses: actions/checkout@v2
-     - uses: actions/setup-node@v1
+    
+    - name: setup Python 3.7 
+      uses: actions/checkout
+      with:
+        python-version: 3.7
+
+    - name: Install Dependencies
+      run: |
+       pip install requirements.txt 
+    
+    - name : Create WebSocket Server
+      run:  |
+        cd src
+        flask --app app.py run
+    
+    - name: sleep
+      run: |
+        sleep 5
+
+    - name: Run PyTest
+      run: |
+        pytest
+
 
