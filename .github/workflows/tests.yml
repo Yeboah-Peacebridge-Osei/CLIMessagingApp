@@ -9,7 +9,7 @@ jobs:
     steps:
     
     - name: setup Python 3.7 
-      uses: actions/checkout
+      uses: actions/checkout@v2
       with:
         python-version: 3.7
 
